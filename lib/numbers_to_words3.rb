@@ -1,4 +1,19 @@
 def numbers_to_words(number)
+
+  # 542,345
+  # digits.length = 6
+  # length_result =  digits.length/3.0
+  #   if length_result/3.0 > 1 && length_result <= 2
+  #     apply RULES
+  #     add "thousand" to results at results[(results.length-4)]
+  #   elsif length_result/3.0 > 2 && length_result <= 3
+  #     apply RULES
+  #     add "thousand" to results at results[(results.length-4)]
+  #     add "million" to results at results[(results.length-7)]
+
+end
+
+def the_rules(number)
   results = []
   ones = {
     0 => "", 1 => "one", 2 => "two", 3 => "three", 4 => "four", 5 => "five", 6 => "six",
@@ -13,19 +28,9 @@ def numbers_to_words(number)
     9 => "ninety"
   }
 
-  # 542,345
-  # digits.length = 6
-  # length_result =  digits.length/3.0
-  #   if length_result/3.0 > 1 && length_result <= 2
-  #     apply RULES
-  #     add "thousand" to results at results[(results.length-4)]
-  #   elsif length_result/3.0 > 2 && length_result <= 3
-  #     apply RULES
-  #     add "thousand" to results at results[(results.length-4)]
-  #     add "million" to results at results[(results.length-7)]
-
-
-
+  keyword = {
+    1 => "trillion",
+  }
   digits = []
 
   while number > 0
@@ -44,7 +49,8 @@ def numbers_to_words(number)
         results << teens[sec_dig]
         digits.shift
       elsif digits.length == 2
-        results << doubles[num]
+        sec_dig = digits[-2]
+        results << doubles[sec_dig]
       elsif digits.length == 1
         results << ones[num]
       end
@@ -52,8 +58,8 @@ def numbers_to_words(number)
     end
   end
 
-  results = results.join
+  results = results.join + keyword[]
   results
 end
 
-print numbers_to_words(55)
+print numbers_to_words(45)
